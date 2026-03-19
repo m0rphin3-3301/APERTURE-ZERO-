@@ -693,10 +693,11 @@ async function sendMsg() {
     const res = await fetch('https://formspree.io/f/xdawbvgp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        email:   email || 'anonymous',
-        message: msg
-      })
+      body: JSON.stringify(
+        email
+          ? { email, message: msg, _subject: 'APERTURE//ZERO feedback' }
+          : { message: msg, _subject: 'APERTURE//ZERO feedback' }
+      )
     });
 
     if (res.ok) {
